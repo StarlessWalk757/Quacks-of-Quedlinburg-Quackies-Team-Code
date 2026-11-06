@@ -20,7 +20,7 @@ public class Node {
     }
 
 
-    public boolean isHasRatTailAfter() {
+    public boolean hasRatTailAfter() {
         return hasRatTailAfter;
     }
 

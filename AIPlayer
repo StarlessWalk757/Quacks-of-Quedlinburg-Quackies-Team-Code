@@ -1,0 +1,142 @@
+import java.util.ArrayList;
+public class AIPlayer extends Player {
+    private double riskTolerance;
+    public AIPlayer(String name, int version) {
+        super(name, version);
+        // Random risk tolerance between 0.2 and 0.4
+        riskTolerance = 0.2 + (Math.random() * 0.2);
+    }
+
+    public double getRiskTolerance() {
+        return riskTolerance;
+    }
+
+    // Calculates the chance of drawing a white chip
+    // that would cause an explosion.
+    public double explodeChance() {
+
+        int totalChips = getBag().size();
+
+        if (totalChips == 0) {
+            return 0.0;
+        }
+
+        int badChips = 0;
+
+        int safeLimit = getWhiteChipLimit() - getWhiteChipTotal();
+
+        for (int i = 0; i < getBag().size(); i++) {
+
+            Token token = getBag().get(i);
+
+            if (token.getColor().equalsIgnoreCase("white")
+                    && token.getValue() > safeLimit) {
+
+                badChips++;
+            }
+        }
+
+        return (double) badChips / totalChips;
+    }
+
+    // Decides whether the AI should draw another chip.
+    public boolean wantsToDraw() {
+
+        if (getBag().isEmpty()) {
+            return false;
+        }
+
+        if (hasExploded() || isStopped()) {
+            return false;
+        }
+
+        return explodeChance() <= riskTolerance;
+    }
+
+    // Decides whether the AI should use its flask.
+    public boolean wantsFlask(Token drawn) {
+
+        if (drawn == null || !hasFlask()) {
+            return false;
+        }
+
+        if (!drawn.getColor().equalsIgnoreCase("white")) {
+            return false;
+        }
+
+        int possibleTotal = getWhiteChipTotal() + drawn.getValue();
+
+        if (possibleTotal >= 5) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // Chooses up to two affordable chips.
+    // AI chooses the most expensive chips.
+    public ArrayList<Token> chooseChips(ArrayList<Token> shop) {
+
+        ArrayList<Token> purchased = new ArrayList<Token>();
+        ArrayList<Token> available = new ArrayList<Token>(shop);
+
+        // Sort from most expensive to least expensive.
+        for (int i = 0; i < available.size(); i++) {
+
+            for (int j = i + 1; j < available.size(); j++) {
+
+                if (available.get(j).getCost() > available.get(i).getCost()) {
+
+                    Token temp = available.get(i);
+                    available.set(i, available.get(j));
+                    available.set(j, temp);
+                }
+            }
+        }
+
+        int money = getMoney();
+
+        for (int i = 0; i < available.size(); i++) {
+
+            if (purchased.size() >= 2) {
+                break;
+            }
+
+            Token token = available.get(i);
+
+            if (token.getCost() <= money) {
+
+                boolean alreadyHaveColor = false;
+
+                for (int j = 0; j < purchased.size(); j++) {
+
+                    if (purchased.get(j).getColor()
+                            .equalsIgnoreCase(token.getColor())) {
+
+                        alreadyHaveColor = true;
+                    }
+                }
+
+                if (!alreadyHaveColor) {
+
+                    purchased.add(token);
+                    money -= token.getCost();
+                }
+            }
+        }
+
+        return purchased;
+    }
+
+    // AI moves its droplet if it has at least 2 rubies.
+    public boolean wantsDroplet() {
+
+        if (getRubies() >= 2) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+

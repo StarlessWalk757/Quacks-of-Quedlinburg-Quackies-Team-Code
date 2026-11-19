@@ -1,4 +1,4 @@
-public CauldronTile
+public class CauldronTile
 {
     private boolean hasRuby;
     private int victoryPoints;

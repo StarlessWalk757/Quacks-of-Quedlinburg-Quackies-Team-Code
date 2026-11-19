@@ -1,13 +1,13 @@
 import java.util.*;
 
 public class Cauldron {
-    private final int TOTAL_NUMBER_OF_SPACES = 33;
-    TreeSet<CauldronTile> pot;
+    private final int TOTAL_NUMBER_OF_SPACES = 54;
+    ArrayList<CauldronTile> pot;
     private CauldronTile lastSpace;
     
     public Cauldron(){
-        pot = new TreeSet<CauldronTile>();
-        
+        pot = new ArrayList<CauldronTile>();
+        pot.add(new CauldronTile(0, 0, false, null));
     }
 
     public CauldronTile getLastSpace() {
@@ -15,14 +15,21 @@ public class Cauldron {
     }
 
     public void updateLastSpace(){
-        boolean hasNextSpace = true;
-        Iterator<CauldronTile> iter = pot.iterator();
-        Token currToken = iter.next.getToken();
-        while(hasNextSpace){
-            int spaces = currToken.getToken.getNum();
-            for(int i = 0; i < spaces; i++){
-                iter.next();
+        CauldronTile curr = new CauldronTile(-1, -1, false, null);
+        for(int i = pot.size()-1; i > 0; i++){
+            if(pot.get(i).getToken() != null){
+                curr = pot.get(i);
+                break;
             }
         }
+        lastSpace = curr;
+    }
+
+    public void placeToken(Token t){
+        pot.get(pot.indexOf(lastSpace)+t.getNumSpaces()).setToken(t);
+    }
+
+    public int getTotalSpaces(){
+        return TOTAL_NUMBER_OF_SPACES;
     }
 }

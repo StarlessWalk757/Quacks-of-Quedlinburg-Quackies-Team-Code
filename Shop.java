@@ -1,9 +1,9 @@
-public Shop
+public class Shop
 {
     private HashMap<String, Integer> prices;
     private int version;
 
-    public class Shop(int v)
+    public Shop(int v)
     {
         version = v;
         if(version == 1)

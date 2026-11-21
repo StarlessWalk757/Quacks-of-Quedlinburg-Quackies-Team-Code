@@ -1,24 +1,35 @@
-import java.util.ArrayList;
-
+import java.util.*;
 public class Player {
     private String playerName;
+    private int version;
     private int numRubies;
-    private int numVictoryPoints;
+    private int numVictoryPts;
     private int money;
     private int dropletLocation;
-    private int ratTails;
     private int potPosition;
+    private int ratTails;
     private boolean hasFlask;
     private boolean exploded;
     private boolean stopped;
-
+    private ArrayList<Token> boughtThisRound;
+    private ArrayList<Token> bag;
     private ArrayList<Token> tokenList;
     private ArrayList<Token> tokensBought;
-    private ArrayList<Token> bag;
     private ArrayList<Token> pot;
+    Cauldron cauldron;
 
-    private Cauldron cauldron; // CREATE CAULDRON CLASS!!!!!!
-
-
-    public Player()
+    public Player(String name, int ver){
+        playerName = name;
+        version = ver;
+    }
+    public void fillBag(Token token){
+        bag.add(token);
+    }
+    public Token drawToken(){
+        Collections.shuffle(bag);
+        return bag.get(0);
+    }
+    public void placeToken(Token t){
+        cauldron.placeToken(t);
+    }
 }

@@ -32,4 +32,18 @@ public class Cauldron {
     public int getTotalSpaces(){
         return TOTAL_NUMBER_OF_SPACES;
     }
+
+    public int getCherryBombTotal(){
+        int cnt = 0;
+        for(CauldronTile tile : pot){
+            if(tile.getToken() != null && tile.getToken().getName().equals("Cherry Bomb")){
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    public boolean checkExploded(int maxCherry){
+        return getCherryBombTotal() > maxCherry;
+    }
 }

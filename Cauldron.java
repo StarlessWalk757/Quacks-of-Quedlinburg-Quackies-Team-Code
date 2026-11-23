@@ -4,8 +4,8 @@ public class Cauldron {
     private final int TOTAL_NUMBER_OF_SPACES = 54;
     ArrayList<CauldronTile> pot;
     private CauldronTile lastSpace;
-    
-    public Cauldron(){
+
+    public Cauldron() {
         pot = new ArrayList<CauldronTile>();
         pot.add(new CauldronTile(0, 0, false, null));
     }
@@ -14,10 +14,10 @@ public class Cauldron {
         return lastSpace;
     }
 
-    public void updateLastSpace(){
+    public void updateLastSpace() {
         CauldronTile curr = new CauldronTile(-1, -1, false, null);
-        for(int i = pot.size()-1; i > 0; i++){
-            if(pot.get(i).getToken() != null){
+        for (int i = pot.size() - 1; i > 0; i++) {
+            if (pot.get(i).getToken() != null) {
                 curr = pot.get(i);
                 break;
             }
@@ -25,25 +25,11 @@ public class Cauldron {
         lastSpace = curr;
     }
 
-    public void placeToken(Token t){
-        pot.get(pot.indexOf(lastSpace)+t.getNumSpaces()).setToken(t);
+    public void placeToken(Token t) {
+        pot.get(pot.indexOf(lastSpace) + t.getNumSpaces()).setToken(t);
     }
 
-    public int getTotalSpaces(){
+    public int getTotalSpaces() {
         return TOTAL_NUMBER_OF_SPACES;
-    }
-
-    public int getCherryBombTotal(){
-        int cnt = 0;
-        for(CauldronTile tile : pot){
-            if(tile.getToken() != null && tile.getToken().getName().equals("Cherry Bomb")){
-                cnt++;
-            }
-        }
-        return cnt;
-    }
-
-    public boolean checkExploded(int maxCherry){
-        return getCherryBombTotal() > maxCherry;
     }
 }

@@ -39,4 +39,8 @@ public class Token {
         name = n;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
 }

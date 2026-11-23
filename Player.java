@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Player {
     private String playerName;
     private int version;
@@ -14,20 +15,42 @@ public class Player {
     private ArrayList<Token> boughtThisRound;
     private ArrayList<Token> bag;
     Cauldron cauldron;
+    private ArrayList<Token> tokenList;
     private int maxCherryBombNum;
 
-    public Player(String name, int ver){
+    public Player(String name, int ver) {
         playerName = name;
         version = ver;
+        boughtThisRound = new ArrayList<>();
+        bag = new ArrayList<>();
+        tokenList = new ArrayList<>();
+        cauldron = new Cauldron();
     }
-    public void fillBag(Token token){
+
+    public void moveDroplet(int c) {
+        dropletLocation = dropletLocation + c;
+    }
+
+    public void addVP(int j) {
+        numVictoryPts = numVictoryPts + j;
+    }
+
+    public void fillBag(Token token) {
         bag.add(token);
     }
-    public Token drawToken(){
-        Collections.shuffle(bag);
-        return bag.get(0);
+
+    public Token drawToken() {
+        if (bag.size() > 0) {
+            Collections.shuffle(bag);
+            Token temp = bag.get(0);
+            bag.remove(0);
+            return temp;
+        } else {
+            return null;
+        }
     }
-    public void placeToken(Token t){
+
+    public void placeToken(Token t) {
         cauldron.placeToken(t);
     }
     public void updateExploded(){
@@ -35,5 +58,17 @@ public class Player {
     }
     public boolean hasExploded(){
         return exploded;
+    }
+
+    public ArrayList<Token> getPlacedTokens() {
+        return cauldron.getPlacedTokens();
+    }
+
+    public Cauldron getCauldron() {
+        return cauldron;
+    }
+
+    public void addRubies(int n) {
+        numRubies += n;
     }
 }

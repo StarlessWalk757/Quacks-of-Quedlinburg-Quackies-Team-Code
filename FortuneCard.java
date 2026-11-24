@@ -4,7 +4,7 @@ public class FortuneCard{
     private boolean isBlue;
 
     public FortuneCard(int id, String desc, boolean blue){
-        description = desc;
+        description= desc;
         fortuneID = id;
         isBlue = blue;
     }

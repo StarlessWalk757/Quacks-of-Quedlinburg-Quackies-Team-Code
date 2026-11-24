@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class FortuneDeck {
-    private ArrayList deck;
+    private ArrayList<FortuneCard> deck;
 
     public FortuneDeck(){
         String[] cardTexts = {"Use your rat stone normally OR pass up on 1-3 rat tails and take that many rubies (1-3) instead.", 
@@ -29,8 +29,13 @@ public class FortuneDeck {
         "In this round, every orange chip is moved 1 extra space forward.",
         "At the end of the round, all flasks get a free refill."};
 
+        deck = new ArrayList<>();
+
         for(int i = 0; i < 12; i++){
             deck.add(new FortuneCard(i, cardTexts[i], false));
+        }
+        for(int i = 12; i < 24; i++){
+            deck.add(new FortuneCard(i, cardTexts[i], true));
         }
     }
 }

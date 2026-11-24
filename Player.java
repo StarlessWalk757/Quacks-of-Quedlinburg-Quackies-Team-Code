@@ -14,8 +14,9 @@ public class Player {
     private boolean stopped;
     private ArrayList<Token> boughtThisRound;
     private ArrayList<Token> bag;
+    Cauldron cauldron;
     private ArrayList<Token> tokenList;
-    private Cauldron cauldron;
+    private int maxCherryBombNum;
 
     public Player(String name, int ver) {
         playerName = name;
@@ -51,6 +52,12 @@ public class Player {
 
     public void placeToken(Token t) {
         cauldron.placeToken(t);
+    }
+    public void updateExploded(){
+        exploded = cauldron.checkExploded(maxCherryBombNum);
+    }
+    public boolean hasExploded(){
+        return exploded;
     }
 
     public ArrayList<Token> getPlacedTokens() {

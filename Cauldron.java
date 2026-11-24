@@ -32,14 +32,4 @@ public class Cauldron {
     public int getTotalSpaces() {
         return TOTAL_NUMBER_OF_SPACES;
     }
-
-    public ArrayList<Token> getPlacedTokens() {
-        ArrayList<Token> placed = new ArrayList<Token>();
-        for (int i = 0; i < pot.size(); i++) {
-            if (pot.get(i).getToken() != null) { // skip empty tiles
-                placed.add(pot.get(i).getToken());
-            }
-        }
-        return placed;
-    }
 }

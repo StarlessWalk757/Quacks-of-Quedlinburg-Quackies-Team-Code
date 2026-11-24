@@ -3,6 +3,7 @@ public class Token {
     protected String description;
     protected int cost;
     private int version;
+    private String name;
 
     public Token(int n, String d, int v) {
         numSpaces = n;
@@ -28,6 +29,14 @@ public class Token {
 
     public void onEvaluate(Player p, Game g) {
 
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String n){
+        name = n;
     }
 
     public int getVersion() {

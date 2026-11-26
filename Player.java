@@ -71,4 +71,19 @@ public class Player {
     public void addRubies(int n) {
         numRubies += n;
     }
+
+    public void spendRubies(int n){
+        numRubies -= n;
+    }
+
+    public boolean refillFlask(){
+        if(numRubies >= 2){
+            numRubies -= 2;
+            hasFlask = true;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

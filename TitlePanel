@@ -1,0 +1,35 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+public class TitlePanel extends JPanel implements MouseListener {
+    private QuacksFrame frame;
+    private Rectangle playButton;
+    private Rectangle helpButton;
+
+    public TitlePanel(QuacksFrame frame) {
+        this.frame = frame;
+        playButton = new Rectangle(450, 400, 300, 80);
+        helpButton = new Rectangle(450, 500, 300, 80);
+        addMouseListener(this);
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        if (playButton.contains(e.getX(), e.getY())) {
+            frame.showSetup();
+        }
+        if (helpButton.contains(e.getX(), e.getY())) {
+            // add help screen... idk if its a separate panel or not tbh
+        }
+    }
+
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+}

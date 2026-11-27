@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.imageio.ImageIO;
 
 public class SetUpPanel extends JPanel implements MouseListener {
     private int VERSION_INFO_STEP;
@@ -30,23 +31,23 @@ public class SetUpPanel extends JPanel implements MouseListener {
 
     private void loadImages() {
         try {
-            parchmentBackground = new ImageIcon(getClass().getResource("/images/parchment_bg.jpg")).getImage();
-            chooseVersionBanner = new ImageIcon(getClass().getResource("/images/choose_version_banner.png")).getImage();
-            versionTypesBanner = new ImageIcon(getClass().getResource("/images/version_types_banner.png")).getImage();
-            questionMarkIcon = new ImageIcon(getClass().getResource("/images/question_mark.png")).getImage();
+            parchmentBackground = ImageIO.read(getClass().getResource("/images/parchment_bg.jpg"));
+            chooseVersionBanner = ImageIO.read(getClass().getResource("/images/choose_version_banner.png"));
+            versionTypesBanner = ImageIO.read(getClass().getResource("/images/version_types_banner.png"));
+            questionMarkIcon = ImageIO.read(getClass().getResource("/images/question_mark.png"));
 
             versionRats = new Image[] {
-                new ImageIcon(getClass().getResource("/images/rat_v1.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/rat_v2.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/rat_v3.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/rat_v4.png")).getImage()
+                ImageIO.read(getClass().getResource("/images/rat_v1.png")),
+                ImageIO.read(getClass().getResource("/images/rat_v2.png")),
+                ImageIO.read(getClass().getResource("/images/rat_v3.png")),
+                ImageIO.read(getClass().getResource("/images/rat_v4.png"))
             };
 
             versionSpellbooks = new Image[] {
-                new ImageIcon(getClass().getResource("/images/spellbooks_v1.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/spellbooks_v2.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/spellbooks_v3.png")).getImage(),
-                new ImageIcon(getClass().getResource("/images/spellbooks_v4.png")).getImage()
+                ImageIO.read(getClass().getResource("/images/spellbooks_v1.png")),
+                ImageIO.read(getClass().getResource("/images/spellbooks_v2.png")),
+                ImageIO.read(getClass().getResource("/images/spellbooks_v3.png")),
+                ImageIO.read(getClass().getResource("/images/spellbooks_v4.png"))
             };
         } catch (Exception e) {
         }

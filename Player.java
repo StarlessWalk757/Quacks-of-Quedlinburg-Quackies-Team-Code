@@ -27,7 +27,7 @@ public class Player {
         cauldron = new Cauldron();
     }
 
-    public void moveDroplet(int c) {
+    public  void moveDroplet(int c) {
         dropletLocation = dropletLocation + c;
     }
 

@@ -18,6 +18,8 @@ public class Player {
     private ArrayList<Token> tokenList;
     private int maxCherryBombNum;
 
+    
+
     public Player(String name, int ver) {
         playerName = name;
         version = ver;
@@ -86,4 +88,59 @@ public class Player {
         }
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public int getNumRubies() {
+        return numRubies;
+    }
+
+    public int getNumVictoryPts() {
+        return numVictoryPts;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getDropletLocation() {
+        return dropletLocation;
+    }
+
+    public int getPotPosition() {
+        return potPosition;
+    }
+
+    public int getRatTails() {
+        return ratTails;
+    }
+
+    public boolean isHasFlask() {
+        return hasFlask;
+    }
+
+    public boolean isStopped() {
+        return stopped;
+    }
+
+    public ArrayList<Token> getBoughtThisRound() {
+        return boughtThisRound;
+    }
+
+    public ArrayList<Token> getBag() {
+        return bag;
+    }
+
+    public ArrayList<Token> getTokenList() {
+        return tokenList;
+    }
+
+    public int getMaxCherryBombNum() {
+        return maxCherryBombNum;
+    }
 }

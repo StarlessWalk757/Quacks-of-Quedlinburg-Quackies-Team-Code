@@ -27,6 +27,7 @@ public class Player {
         bag = new ArrayList<>();
         tokenList = new ArrayList<>();
         cauldron = new Cauldron();
+        maxCherryBombNum = 7;
     }
 
     public  void moveDroplet(int c) {
@@ -142,5 +143,8 @@ public class Player {
 
     public int getMaxCherryBombNum() {
         return maxCherryBombNum;
+    }
+    public void setMaxCherryBombNum(int n){
+        maxCherryBombNum = n;
     }
 }
